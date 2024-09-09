@@ -15,7 +15,10 @@ end
 
 -- import
 local tick = require('lib.tick')
+
 local player = require('player')
+
+local monster = require('monster')
 -- end of import
 
 local function checkCollision(a, b)
@@ -43,8 +46,12 @@ end
 
 function love.update(dt)
     player.update(dt)
+
+    monster.update(dt)
 end
 
 function love.draw()
     player.draw()
+
+    monster.draw()
 end

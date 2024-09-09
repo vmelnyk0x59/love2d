@@ -5,7 +5,7 @@ monster.image = love.graphics.newImage('images/monster.png');
 
 monster.x = 300
 
-monster.y = 20
+monster.y = 400
 
 monster.speed = 300
 
@@ -39,4 +39,4 @@ function monster.update(dt)
      end
 end
 
-return player
+return monster
