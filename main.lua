@@ -57,6 +57,12 @@ function love.update(dt)
 
     for i, bomb in ipairs(bombsList) do
         bomb:update(dt)
+
+        bomb:checkCollision(monster)
+
+        if bomb.dead then
+            table.remove(bombsList, i)
+        end
     end
 end
 

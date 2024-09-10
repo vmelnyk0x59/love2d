@@ -16,10 +16,6 @@ Player.width = Player.image:getWidth() * zoom
 
 Player.height = Player.image:getHeight() * zoom
 
-function table.clone(org)
-    return {table.unpack(org)}
-end
-
 function Player.keypressed(key)
     if key == 'space' then
         local bomb = Bomb:new(Player.x, Player.y)
