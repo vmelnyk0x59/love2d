@@ -13,6 +13,8 @@ function love.errorhandler(msg)
     end
 end
 
+bombsList = {};
+
 -- import
 local tick = require('lib.tick')
 
@@ -40,6 +42,10 @@ local function checkCollision(a, b)
         and a_top < b_bottom
 end
 
+function love.keypressed(key)
+    player.keypressed(key)
+end
+
 function love.load()
     
 end
@@ -48,10 +54,18 @@ function love.update(dt)
     player.update(dt)
 
     monster.update(dt)
+
+    for i, bomb in ipairs(bombsList) do
+        bomb:update(dt)
+    end
 end
 
 function love.draw()
     player.draw()
 
     monster.draw()
+
+    for i, bomb in ipairs(bombsList) do
+        bomb:draw()
+    end
 end

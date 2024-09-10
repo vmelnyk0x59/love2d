@@ -1,42 +1,37 @@
-local monster = {}
+local Monster = {}
 local zoom = 3;
 
-monster.image = love.graphics.newImage('images/monster.png');
+Monster.image = love.graphics.newImage('images/monster.png');
 
-monster.x = 300
+Monster.x = 300
 
-monster.y = 400
+Monster.y = 400
 
-monster.speed = 300
+Monster.speed = 200
 
-monster.width = monster.image:getWidth() * zoom
+Monster.width = Monster.image:getWidth() * zoom
 
-monster.height = monster.image:getHeight() * zoom
+Monster.height = Monster.image:getHeight() * zoom
 
-function monster.draw()
-    love.graphics.draw(monster.image, monster.x, monster.y, 0, zoom, zoom)
+Monster.direction = 1;
+
+function Monster.draw()
+    love.graphics.draw(Monster.image, Monster.x, Monster.y, 0, zoom, zoom)
 end
 
-function monster.update(dt)
-    if love.keyboard.isDown("left") then
-        monster.x = monster.x - monster.speed * dt
-    elseif love.keyboard.isDown("right") then
-        monster.x = monster.x + monster.speed * dt
+function Monster.update(dt)
+    --Get the width of the window
+    local window_width = love.graphics.getWidth()
+
+    --If the x is too far too the left then..
+    if Monster.x < 0 then
+        Monster.direction = 1
+    --Else, if the x is too far to the right then..
+    elseif Monster.x + Monster.width > window_width then
+        Monster.direction = -1
     end
 
-     --Get the width of the window
-     local window_width = love.graphics.getWidth()
-
-     --If the x is too far too the left then..
-     if monster.x < 0 then
-         --Set x to 0
-         monster.x = 0
- 
-     --Else, if the x is too far to the right then..
-     elseif monster.x + monster.width > window_width then
-         --Set the x to the window's width.
-         monster.x = window_width - monster.width
-     end
+    Monster.x = Monster.x + Monster.speed * Monster.direction * dt
 end
 
-return monster
+return Monster
