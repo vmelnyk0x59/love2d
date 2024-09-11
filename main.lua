@@ -63,6 +63,12 @@ function love.update(dt)
         if bomb.dead then
             table.remove(bombsList, i)
         end
+
+        --If the bullet is out of the screen
+        if bomb.y > love.graphics.getHeight() then
+            --Restart the game
+            love.load()
+        end
     end
 end
 
